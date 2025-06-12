@@ -1,361 +1,303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Portfólio | Iky Rodrigues</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-  :root {
-    --clr-bg: #ffffff;
-    --clr-text-primary: #111827;
-    --clr-text-secondary: #6b7280;
-    --clr-accent: #000000;
-    --clr-border: #e5e7eb;
-    --transition-speed: 0.3s;
-    --radius: 0.75rem;
-    --max-width: 1200px;
-    --spacing-xl: 4rem;
-    --spacing-lg: 2.5rem;
-    --spacing-md: 1.5rem;
-    --spacing-sm: 1rem;
-    --font-primary: 'Poppins', sans-serif;
-  }
-
-  /* Base Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: var(--font-primary);
-    background-color: var(--clr-bg);
-    color: var(--clr-text-primary);
-    line-height: 1.6;
-    font-size: 18px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  a {
-    color: var(--clr-accent);
-    text-decoration: none;
-    transition: color var(--transition-speed);
-  }
-  a:hover,
-  a:focus {
-    color: #444444;
-    outline: none;
-  }
-
-  main {
-    flex-grow: 1;
-    max-width: var(--max-width);
-    width: 90%;
-    margin: 0 auto;
-    padding-bottom: var(--spacing-xl);
-  }
-
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #fff;
-    border-bottom: 1px solid var(--clr-border);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-  }
-
-  .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--clr-accent);
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: var(--spacing-md);
-    margin: 0;
-    padding: 0;
-  }
-
-  nav li a {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius);
-    transition: background-color var(--transition-speed), color var(--transition-speed);
-  }
-
-  nav li a:hover,
-  nav li a:focus {
-    background-color: var(--clr-border);
-    outline: none;
-  }
-
-  /* Hero Section */
-  .hero {
-    margin-top: var(--spacing-xl);
-    text-align: center;
-    padding: 0 var(--spacing-lg);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero h1 {
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    font-weight: 800;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.1;
-    color: var(--clr-accent);
-  }
-
-  .hero p {
-    font-size: 1.25rem;
-    color: var(--clr-text-secondary);
-    user-select: text;
-  }
-
-  .hero .btn-primary {
-    margin-top: var(--spacing-lg);
-    background-color: var(--clr-accent);
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    padding: 0.85rem 2.75rem;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-  }
-
-  .hero .btn-primary:hover, .hero .btn-primary:focus {
-    background-color: #333333;
-    outline: none;
-    transform: scale(1.05);
-  }
-
-  /* Sections common style */
-  section {
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-lg);
-  }
-
-  section h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-lg);
-    color: var(--clr-accent);
-    border-bottom: 3px solid var(--clr-accent);
-    display: inline-block;
-    padding-bottom: 0.3rem;
-  }
-
-  section p {
-    color: var(--clr-text-secondary);
-    font-size: 1.125rem;
-    max-width: 600px;
-    line-height: 1.5;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  /* AboutMe list */
-  .about-list {
-    max-width: 400px;
-    padding-left: 1rem;
-    margin: 0;
-  }
-  .about-list li {
-    font-weight: 500;
-    margin-bottom: 0.9rem;
-    font-size: 1.15rem;
-    border-left: 4px solid var(--clr-accent);
-    padding-left: 1rem;
-    user-select: text;
-  }
-
-  /* Interests – minimal cards in grid */
-  .interests-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    gap: var(--spacing-md);
-    max-width: 900px;
-  }
-
-  .interest-card {
-    background: #f9fafb;
-    border-radius: var(--radius);
-    box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
-    padding: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: default;
-    user-select: none;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  }
-  .interest-card:hover,
-  .interest-card:focus-within {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgb(0 0 0 / 0.15);
-    outline: none;
-  }
-
-  .interest-icon {
-    font-size: 2.8rem;
-    color: var(--clr-accent);
-    margin-bottom: var(--spacing-sm);
-  }
-  .interest-title {
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 0.35rem;
-    color: var(--clr-text-primary);
-  }
-  .interest-desc {
-    color: var(--clr-text-secondary);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.4;
-  }
-
-  /* Contact */
-  #contato p, #contato a {
-    max-width: 500px;
-    color: var(--clr-text-secondary);
-    font-size: 1.1rem;
-    user-select: text;
-  }
-
-  #contato a {
-    font-weight: 600;
-    color: var(--clr-accent);
-    transition: color var(--transition-speed);
-  }
-  #contato a:hover, #contato a:focus {
-    color: #333333;
-    outline: none;
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    color: var(--clr-text-secondary);
-    padding: var(--spacing-md);
-    font-size: 0.9rem;
-    user-select: none;
-  }
-
-  /* Scroll behavior smooth */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Responsive */
-  @media (max-width: 480px) {
-    .hero h1 {
-      font-size: 2.4rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio | Iky Rodrigues</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-bg: #ffffff;
+      --clr-text-primary: #111827;
+      --clr-text-secondary: #6b7280;
+      --clr-accent: #000000;
+      --clr-border: #e5e7eb;
+      --transition-speed: 0.3s;
+      --radius: 0.75rem;
+      --max-width: 1200px;
+      --spacing-xl: 4rem;
+      --spacing-lg: 2.5rem;
+      --spacing-md: 1.5rem;
+      --spacing-sm: 1rem;
+      --font-primary: 'Poppins', sans-serif;
     }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-primary);
+      background-color: var(--clr-bg);
+      color: var(--clr-text-primary);
+      line-height: 1.6;
+      font-size: 18px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--clr-accent);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+    a:hover,
+    a:focus {
+      color: #444444;
+      outline: none;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: var(--max-width);
+      width: 90%;
+      margin: 0 auto;
+      padding-top: var(--spacing-xl);
+      padding-bottom: var(--spacing-xl);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid var(--clr-border);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--clr-accent);
+      user-select: text;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: var(--spacing-md);
+      margin: 0;
+      padding: 0;
+    }
+
     nav li a {
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      user-select: text;
     }
-    .interests-grid {
-      grid-template-columns: 1fr;
+
+    nav li a:hover,
+    nav li a:focus {
+      background-color: var(--clr-border);
+      outline: none;
+      cursor: pointer;
     }
-  }
-</style>
+
+    .profile-img {
+      display: block;
+      margin: 0 auto var(--spacing-lg);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 0 var(--spacing-lg);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      line-height: 1.1;
+      color: var(--clr-accent);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--clr-text-secondary);
+      max-width: 440px;
+      margin: 0 auto var(--spacing-lg);
+    }
+
+    .hero .btn-primary {
+      background-color: var(--clr-accent);
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+      text-decoration: none;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .hero .btn-primary:hover,
+    .hero .btn-primary:focus {
+      background-color: #333333;
+      outline: none;
+      transform: scale(1.05);
+    }
+
+    section {
+      padding-top: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+    }
+
+    section h2 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-lg);
+      color: var(--clr-accent);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #f9fafb;
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    }
+
+    .feature-card:hover,
+    .feature-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 13px 25px rgba(0,0,0,0.1);
+      outline: none;
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--clr-accent);
+      margin-bottom: var(--spacing-md);
+      user-select: none;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      user-select: text;
+    }
+
+    .feature-desc {
+      color: var(--clr-text-secondary);
+      font-size: 1rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--clr-text-secondary);
+      padding: var(--spacing-md);
+      font-size: 1rem;
+      user-select: none;
+      border-top: 1px solid var(--clr-border);
+      margin-top: var(--spacing-xl);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo" tabindex="0" aria-label="Logo Iky Rodrigues">Iky Rodrigues</div>
-  <nav aria-label="Navegação principal">
-    <ul>
-      <li><a href="#sobre-mim" tabindex="0">Sobre Mim</a></li>
-      <li><a href="#interesses" tabindex="0">Interesses</a></li>
-      <li><a href="#contato" tabindex="0">Contato</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <div class="logo" tabindex="0" aria-label="Logo Iky Rodrigues">Iky Rodrigues</div>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#features" tabindex="0">Funcionalidades</a></li>
+        <li><a href="#about" tabindex="0">Sobre</a></li>
+        <li><a href="#contact" tabindex="0">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main>
-  <section class="hero" role="banner">
-    <h1>Olá, eu sou Iky Rodrigues</h1>
-    <p>Tenho 17 anos, 1,82m, apaixonado por lutas, leitura, música, e muito mais. Bem-vindo ao meu portfólio pessoal.</p>
-    <a href="https://instagram.com/Ikkisnow" target="_blank" rel="noopener" class="btn-primary" aria-label="Saiba mais no Instagram Ikkisnow">Saiba mais</a>
-  </section>
+  <main>
+    <!-- Instagram profile picture -->
+    <img src="466514821_524634410400812_3065819063948055262_n.png" alt="Foto de perfil de Iky Rodrigues" class="profile-img" />
 
-  <section id="sobre-mim" tabindex="-1" aria-labelledby="sobre-mim-title">
-    <h2 id="sobre-mim-title">Sobre Mim</h2>
-    <ul class="about-list" aria-label="Detalhes sobre Iky Rodrigues">
-      <li><strong>Nome:</strong> Iky Rodrigues</li>
-      <li><strong>Idade:</strong> 17 anos</li>
-      <li><strong>Altura:</strong> 1,82 m</li>
-      <li><strong>Principais paixões:</strong> Luta, leitura, música, culinária romântica, amor por animais</li>
-      <li><strong>Habilidades:</strong> Sou ótimo em diversas áreas, sempre buscando aprender e evoluir.</li>
-    </ul>
-  </section>
+    <section class="hero" role="banner">
+      <h1>Olá, eu sou Iky Rodrigues</h1>
+      <p>Bem-vindo ao meu portfólio pessoal onde compartilho minhas paixões, habilidades e projetos.</p>
+      <a href="https://instagram.com/Ikkisnow" target="_blank" rel="noopener" class="btn-primary" aria-label="Siga aqui no Instagram Ikkisnow">SIGA AQUI</a>
+    </section>
 
-  <section id="interesses" tabindex="-1" aria-labelledby="interesses-title" aria-describedby="interesses-desc">
-    <h2 id="interesses-title">Interesses</h2>
-    <p id="interesses-desc" style="max-width: 480px; margin-bottom: var(--spacing-lg); color: var(--clr-text-secondary); user-select: text;">
-      Algumas áreas que me inspiram e motivam.
-    </p>
-    <div class="interests-grid" aria-label="Lista de interesses de Iky Rodrigues">
-      <article class="interest-card" tabindex="0" aria-label="Interesse Luta">
-        <div class="interest-icon" aria-hidden="true">🥋</div>
-        <h3 class="interest-title">Luta</h3>
-        <p class="interest-desc">Disciplina, foco e superação constante.</p>
-      </article>
-      <article class="interest-card" tabindex="0" aria-label="Interesse Leitura">
-        <div class="interest-icon" aria-hidden="true">📚</div>
-        <h3 class="interest-title">Leitura</h3>
-        <p class="interest-desc">Ampliação do conhecimento e visão de mundo.</p>
-      </article>
-      <article class="interest-card" tabindex="0" aria-label="Interesse Música">
-        <div class="interest-icon" aria-hidden="true">🎵</div>
-        <h3 class="interest-title">Música</h3>
-        <p class="interest-desc">Inspiração e relaxamento.</p>
-      </article>
-      <article class="interest-card" tabindex="0" aria-label="Interesse Culinária Romântica">
-        <div class="interest-icon" aria-hidden="true">🍳</div>
-        <h3 class="interest-title">Culinária Romântica</h3>
-        <p class="interest-desc">Criar momentos especiais com sabor e carinho.</p>
-      </article>
-      <article class="interest-card" tabindex="0" aria-label="Interesse Animais">
-        <div class="interest-icon" aria-hidden="true">🐾</div>
-        <h3 class="interest-title">Amor pelos Animais</h3>
-        <p class="interest-desc">Respeito e cuidado pelos nossos amigos de quatro patas.</p>
-      </article>
-      <article class="interest-card" tabindex="0" aria-label="Interesse Versatilidade">
-        <div class="interest-icon" aria-hidden="true">⭐</div>
-        <h3 class="interest-title">Versatilidade</h3>
-        <p class="interest-desc">Sou ótimo em diversas áreas, sempre aberto a novos desafios.</p>
-      </article>
-    </div>
-  </section>
+    <section id="features" tabindex="-1" aria-labelledby="features-title">
+      <h2 id="features-title">Minhas Paixões</h2>
+      <div class="features-grid" role="list">
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Lutas">
+          <div class="feature-icon" aria-hidden="true">🥋</div>
+          <h3 class="feature-title">Lutas</h3>
+          <p class="feature-desc">Disciplina, foco e superação constante no universo das artes marciais.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Leitura">
+          <div class="feature-icon" aria-hidden="true">📚</div>
+          <h3 class="feature-title">Leitura</h3>
+          <p class="feature-desc">Ampliação contínua do conhecimento com livros diversos.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Música">
+          <div class="feature-icon" aria-hidden="true">🎵</div>
+          <h3 class="feature-title">Música</h3>
+          <p class="feature-desc">Fonte de inspiração e relaxamento no meu dia a dia.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Culinária Romântica">
+          <div class="feature-icon" aria-hidden="true">🍳</div>
+          <h3 class="feature-title">Culinária Romântica</h3>
+          <p class="feature-desc">Criar momentos especiais com sabor e carinho.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Amor pelos Animais">
+          <div class="feature-icon" aria-hidden="true">🐾</div>
+          <h3 class="feature-title">Amor pelos Animais</h3>
+          <p class="feature-desc">Respeito e cuidado pelos nossos amigos de quatro patas.</p>
+        </article>
+      </div>
+    </section>
 
-  <section id="contato" tabindex="-1" aria-labelledby="contato-title">
-    <h2 id="contato-title">Contato</h2>
-    <p>Quer saber mais? Me encontre no Instagram:</p>
-    <p>
-      <a href="https://instagram.com/Ikkisnow" target="_blank" rel="noopener noreferrer" aria-label="Instagram Iky Rodrigues">@Ikkisnow</a>
-    </p>
-  </section>
-</main>
+    <section id="about" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title">Sobre Mim</h2>
+      <p>Tenho 17 anos, 1,82m, sou versátil e apaixonado por aprender e evoluir em diversas áreas da vida.</p>
+    </section>
 
-<footer>
-  <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
-</footer>
+    <section id="contact" tabindex="-1" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contato</h2>
+      <p>Quer saber mais? Me encontre no Instagram:</p>
+      <p>
+        <a href="https://instagram.com/Ikkisnow" target="_blank" rel="noopener noreferrer" aria-label="Instagram Iky Rodrigues">@Ikkisnow</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
